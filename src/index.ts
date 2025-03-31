@@ -1,8 +1,16 @@
-import { initializeServer, startServer } from "./server"
+//#region Imports
+import { ServerExpress } from "./serverExpress"
+//#endregion
 
-process.on('unhandledRejection', (err) => {
-    console.error(err)
+process.on('unhandledRejection', (err: Error) => {
+    console.error(err?.message || err)
     process.exit(1)
 })
 
-await startServer()
+    const server = new ServerExpress();
+    server.start()
+        .then(() => server.listen())
+        .catch(error => {
+            console.error(error)
+            process.exit(1)
+        })
