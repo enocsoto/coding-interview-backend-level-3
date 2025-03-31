@@ -4,5 +4,24 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-  "remoteUser": "node"
+	"remoteUser": "node",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-typescript-next"
+			]
+		}
+	},
+	"forwardPorts": [3000, 5435],
+	"postCreateCommand": "npm install",
+	"remoteEnv": {
+		"DB_HOST": "localhost",
+		"DB_PORT": "5435",
+		"DB_USER": "postgres",
+		"DB_PASSWORD": "postgres",
+		"DB_NAME": "items_db",
+		"PORT": "3000"
+	}
 }
